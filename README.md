@@ -1,7 +1,7 @@
 # `redux-cmp-generator`
-### Simple, customizable utility for adding new React components to your project.
+### Simple, customizable utility for adding new react-native redux components to your project.
 
-This project is a globally-installable CLI for adding new React native components. It's dead simple to use, and requires no configuration, although it's easy to customize it to fit your project's coding style.
+This project is a globally-installable CLI for adding new React native redux components. It's dead simple to use, and requires no configuration, although it's easy to customize it to fit your project's coding style.
 
 <br />
 

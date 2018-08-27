@@ -59,11 +59,26 @@ const templatePath = `./templates/${program.type}.js`;
 const componentDir = `${program.dir}/${componentName}`;
 const viewfilePath = `${componentDir}/${viewComponentName}.${program.extension}`;
 
-const containerTemplatePath = `./templates/classViewContainer.js`;
-const containerPath = `${componentDir}/${viewComponentName}Container.${program.extension}`;
+const containerPath = `${componentDir}/${viewComponentName +"Container"}.${program.extension}`;
+const containerTemplatePath = prettify(`\
+import { connect } from 'react-redux';
+import ${viewComponentName} from './${viewComponentName}';
+export default connect(
+  state => ({
 
-const styleTemplatePath = `./templates/classStyles.js`;
-const stylePath = `${componentDir}/${viewComponentName}Styles.${program.extension}`;
+  }),dispatch => {
+  }
+)(${viewComponentName});`);
+
+const stylePath = `${componentDir}/${viewComponentName +"Styles"}.${program.extension}`;
+const styleTemplatePath = prettify(`\
+import { StyleSheet, Platform } from 'react-native';
+const styles = StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
+export default styles;`);
 
 logIntro({ name: componentName, dir: componentDir, type: program.type });
 
@@ -85,7 +100,7 @@ if (fs.existsSync(fullPathToComponentDir)) {
 // Start by creating the directory that our component lives in.
 mkDirPromise(componentDir)
   .then(() => (
-    readFilePromiseRelative(templatePath)
+    readFilePromiseRelative(templatePath)        
   ))
   .then(template => {
     logItemCompletion('Directory created.');
@@ -100,19 +115,15 @@ mkDirPromise(componentDir)
     writeFilePromise(viewfilePath, prettify(template))
   ))
   .then(template => (
-    // We also need the `ViewContainer` file, which allows easy importing.
-    writeFilePromise(viewContainerPath, prettify(containerTemplatePath))
+    // We also need the `containerPath` file, which allows easy importing.
+    writeFilePromise(containerPath, prettify(containerTemplatePath))
   ))
   .then(template => (
-    // We also need the `ViewStyles` file, which allows easy importing.
-    writeFilePromise(viewStylePath, prettify(styleTemplatePath))
+    // We also need the `stylePath` file, which allows easy importing.
+    writeFilePromise(stylePath, prettify(styleTemplatePath))
   ))
   .then(template => {
-    logItemCompletion('Component built and saved to disk.');
-    return template;
-  })
-  .then(template => {
-    logItemCompletion('Index file built and saved to disk.');
+    logItemCompletion('Component, Container and Styles built and saved to disk.');
     return template;
   })
   .then(template => {

@@ -15,7 +15,7 @@ const { requireOptional } = require('./utils');
 
 const colors = {
   red: [216, 16, 16],
-  green: [142, 215, 0],
+  green: [0, 215, 0],
   blue: [0, 186, 255],
   gold: [255, 204, 0],
   mediumGray: [128, 128, 128],
@@ -65,28 +65,23 @@ module.exports.buildPrettifier = prettierConfig => text => (
 
 module.exports.logIntro = ({ name, dir, type }) => {
   console.info('\n');
-  console.info(`✨  Creating the ${chalk.bold.rgb(...colors.gold)(name)} component ✨`);
+  console.info(`====== Creating the ${chalk.bold.rgb(...colors.gold)(name)} component ======`);
   console.info('\n');
-
 
   const pathString = chalk.bold.rgb(...colors.blue)(dir);
   const typeString = logComponentType(type);
-
   console.info(`Directory:  ${pathString}`);
   console.info(`Type:       ${typeString}`);
-  console.info(chalk.rgb(...colors.darkGray)('========================================='));
-
-  console.info('\n\n');
+  console.info(chalk.rgb(...colors.darkGray)('========================================='));  
 };
-
 module.exports.logItemCompletion = (successText) => {
-  const checkmark = chalk.rgb(...colors.green)('✓');
+  const checkmark = chalk.rgb(...colors.green)('|_');
   console.info(`${checkmark} ${successText}`);
 }
 
 module.exports.logConclusion = () => {
   console.info('\n');
-  console.info(chalk.bold.rgb(...colors.green)('Component created! 🚀 '));
+  console.info(chalk.bold.rgb(...colors.green)('Component created!'));
   console.info(chalk.rgb(...colors.mediumGray)('Thanks for using redux-cmp-generator.'));
   console.info('\n');
 }
