@@ -52,7 +52,7 @@ Legacy `createClass` components are not supported, although support would be eas
 
 **Usage:**
 
-Command line: `--type <value>` or `-t <value>`
+Command line: `redux-cmp-generator Test --type <value>` or `-t <value>`
 
 JSON config: `{ "type": <value> }`
 <br />
@@ -65,7 +65,7 @@ Legacy `createClass` components are not supported, although support would be eas
 
 **Usage:**
 
-Command line: `--dir <value>` or `-d <value>`
+Command line: `redux-cmp-generator Test --dir <value>` or `-d <value>`
 
 JSON config: `{ "dir": <value> }`
 <br />
@@ -76,7 +76,7 @@ Controls the file extension for the created components. Can be either `js` (defa
 
 **Usage:**
 
-Command line: `--extension <value>` or `-x <value>`
+Command line: `redux-cmp-generator Test --extension <value>` or `-x <value>`
 
 JSON config: `{ "extension": <value> }`
 <br />
